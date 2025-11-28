@@ -3,6 +3,7 @@ import CountUp from "react-countup";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import VideoHero from "./assets/Video.mp4"; // Transparent video
+import Image from './assets/image.png'
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -12,39 +13,50 @@ export default function LandingPage() {
     <div className="min-h-screen w-full bg-[#0C0F2D] text-white font-inter overflow-x-hidden">
 
       {/* Navbar */}
-      <nav className="max-w-7xl mx-auto flex justify-between items-center py-4 px-5 md:px-10">
-        <div className="flex items-center gap-3">
-          <span className="w-10 h-10 flex justify-center items-center bg-white text-blue-700 font-black rounded-full">
-            D
-          </span>
-          <h1 className="text-xl sm:text-2xl font-bold">Complaint Box</h1>
-        </div>
+<nav className="max-w-7xl mx-auto flex justify-between items-center py-4 px-5 md:px-10">
+  <div className="flex items-center gap-3">
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          <button
-            onClick={() => document.getElementById("about").scrollIntoView({ behavior: "smooth" })}
-            className="hover:text-gray-300 transition"
-          >
-            About
-          </button>
-          <button className="hover:text-gray-300 transition">Contact</button>
-          <button
-            onClick={() => navigate("/LoginPage")}
-            className="bg-blue-500 hover:bg-blue-600 transition px-5 py-2 rounded-lg font-semibold"
-          >
-            Login
-          </button>
-        </div>
+    {/* Logo */}
+    <span className="w-10 h-10 flex justify-center items-center bg-white rounded-full overflow-hidden">
+      <img
+        src={Image}
+        alt="logo"
+        className="w-7 h-7 object-contain"
+      />
+    </span>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden border border-white/50 px-3 py-1 rounded-md"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          Menu
-        </button>
-      </nav>
+    <h1 className="text-xl sm:text-2xl font-bold">Complaint Box</h1>
+  </div>
+
+  {/* Desktop Menu */}
+  <div className="hidden md:flex items-center gap-8">
+    <button
+      onClick={() =>
+        document.getElementById("about").scrollIntoView({ behavior: "smooth" })
+      }
+      className="hover:text-gray-300 transition"
+    >
+      About
+    </button>
+
+    <button className="hover:text-gray-300 transition">Contact</button>
+
+    <button
+      onClick={() => navigate("/LoginPage")}
+      className="bg-blue-500 hover:bg-blue-600 transition px-5 py-2 rounded-lg font-semibold"
+    >
+      Login
+    </button>
+  </div>
+
+  {/* Mobile Menu Button */}
+  <button
+    className="md:hidden border border-white/50 px-3 py-1 rounded-md"
+    onClick={() => setMenuOpen(!menuOpen)}
+  >
+    Menu
+  </button>
+</nav>
 
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
