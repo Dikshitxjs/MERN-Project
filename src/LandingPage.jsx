@@ -1,69 +1,66 @@
 import { motion } from "framer-motion";
+import Image1 from "./image.png"; // relative path
+import CountUp from "react-countup";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white overflow-x-hidden font-sans">
-      
+    <div className="min-h-screen w-full bg-[#0C0F2D] text-white font-inter overflow-hidden">
+
       {/* Navbar */}
-      <nav className="max-w-7xl mx-auto flex justify-between items-center py-6 px-6">
-        <div className="flex items-center gap-2">
-          <span className="w-8 h-8 flex justify-center items-center bg-white text-blue-700 font-black rounded-full">
+      <nav className="max-w-7xl mx-auto flex justify-between items-center py-5 px-5 md:px-10">
+        <div className="flex items-center gap-3">
+          <span className="w-10 h-10 flex justify-center items-center bg-white text-blue-700 font-black rounded-full">
             D
           </span>
-          <h1 className="text-2xl font-bold tracking-wide">Complaint Box</h1>
+          <h1 className="text-xl md:text-2xl font-bold tracking-wide">Complaint Box</h1>
         </div>
-        {/* Mobile Menu */}
-        <div className="flex md:hidden">
-          <button className="px-3 py-2 border rounded-md border-white/50">Menu</button>
-        </div>
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6">
+
+        <div className="hidden md:flex items-center gap-8">
           <button className="hover:text-gray-300 transition">About</button>
           <button className="hover:text-gray-300 transition">Contact</button>
-          <button className="cursor-pointer bg-white text-black px-4 py-2 rounded-xl font-semibold hover:bg-gray-200 transition">
+          <button className="bg-blue-500 hover:bg-blue-600 transition px-5 py-2 rounded-lg font-semibold">
             Login
           </button>
         </div>
+
+        <button className="md:hidden border border-white/50 px-3 py-1 rounded-md">Menu</button>
       </nav>
 
-      {/* Hero */}
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center pt-10 pb-20">
-        
+
+      {/* Hero Section */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center px-5 md:px-10 pt-10">
+
         {/* Left */}
-        <div>
+        <div className="order-2 md:order-1 mt-8 md:mt-0">
           <motion.h1
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-snug sm:leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
           >
-            Speak Up. <br />
-            Be Heard. <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-pink-300">
-              Get Solutions.
-            </span>
+            Speak Up. Be Heard.
+            <br />
+            <span className="text-blue-400">Get Solutions.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-200 max-w-md"
+            transition={{ delay: 0.2 }}
+            className="mt-4 text-gray-300 max-w-md text-sm sm:text-base"
           >
-            Complaint Box lets you submit grievances, ask questions,
-            and get responses from verified admins.
+            A secure place to raise complaints and get verified responses from officials.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
+            transition={{ delay: 0.4 }}
+            className="mt-6 flex gap-4"
           >
-            <button className="cursor-pointer px-6 py-3 bg-white text-black rounded-xl font-semibold hover:bg-gray-200 transition w-full sm:w-auto">
+            <button className="px-6 py-3 bg-blue-500 rounded-lg hover:bg-blue-600 font-semibold">
               Get Started
             </button>
-            <button className="cursor-pointer px-6 py-3 bg-transparent border border-white rounded-xl font-semibold hover:bg-white hover:text-black transition w-full sm:w-auto">
+            <button className="px-6 py-3 border border-gray-400 rounded-lg hover:bg-white hover:text-black transition font-semibold">
               Browse Queries
             </button>
           </motion.div>
@@ -71,43 +68,43 @@ export default function LandingPage() {
 
         {/* Right Image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3 }}
-          className="flex justify-center md:justify-end"
+          className="order-1 md:order-2 flex justify-center"
         >
           <img
-            src="/hero-illustration.svg"
+        src ={Image1}
             alt="People discussing complaints"
-            className="w-full max-w-md sm:max-w-lg"
+            className="w-64 sm:w-80 md:w-96 drop-shadow-2xl"
           />
         </motion.div>
+
       </div>
 
-      {/* Stats */}
+{/* Stats */}
+<div className="bg-[#111432] mt-16 py-10">
+  <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center px-8">
+    {[
+      [1500, "Resolved", "+"],
+      [20, "Organizations", "+"],
+      [5000, "Users", "+"],
+      [5000, "Queries", "+"]
+    ].map(([value, label, suffix], i) => (
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="w-full bg-white/10 backdrop-blur-md py-12"
+        key={i}
+        whileHover={{ scale: 1.05 }}
+        className="bg-[#1B1E45] rounded-xl py-6 border border-white/10"
       >
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center px-6">
-          {[
-            ["3,500+", "Complaints resolved"],
-            ["120+", "Organizations onboard"],
-            ["10,000+", "Active users"],
-            ["5,000+", "Queries posted"],
-          ].map(([num, label], i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              className="bg-white/20 rounded-2xl py-6 shadow-lg border border-white/20"
-            >
-              <h2 className="text-2xl sm:text-3xl font-bold">{num}</h2>
-              <p className="text-gray-200 mt-1 text-sm sm:text-base">{label}</p>
-            </motion.div>
-          ))}
-        </div>
+        <h2 className="text-2xl font-bold text-blue-400">
+          <CountUp end={value} duration={2.5} separator="," suffix={suffix} />
+        </h2>
+        <p className="text-gray-300 mt-1 text-sm">{label}</p>
       </motion.div>
+    ))}
+  </div>
+</div>
+
     </div>
   );
 }
