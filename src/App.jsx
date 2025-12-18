@@ -8,10 +8,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/LoginPage" element={<LoginPage />} />
       </Routes>
     </Router>
-  );
+  ); 
 }
 
 export default App;

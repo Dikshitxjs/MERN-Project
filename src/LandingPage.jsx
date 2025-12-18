@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import VideoHero from "./assets/Video.mp4"; // Transparent video
 import Image from './assets/image.png'
-
+import LoginPage from "./LoginPage";
 export default function LandingPage() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
