@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LandingPage from "./LandingPage";
+import axios from "axios";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -8,15 +9,24 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Simple demo authentication
-    if (username === "admin" && password === "123") {
-      navigate("/dashboard"); // Navigate to a dashboard page after login
-    } else {
-      setError("Invalid username or password");
-    }
-  };
+  const handleLogin = async (e) => {
+  e.preventDefault();
+  setError("");
+
+  try {
+    const response = await axios.post(
+      "http://localhost:3001/login",
+      { username, password },
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+    console.log(response.data.user);
+  } catch (err) {
+    setError("Cannot connect to server");
+  }
+};
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0C0F2D] text-white px-5">

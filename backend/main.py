@@ -1,18 +1,36 @@
-from flask import Flask
-from flask_pymongo import PyMongo  # Correct import
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
 
-# MongoDB connection string
-app.config["MONGO_URI"] = "mongodb+srv://complainuser:root@complaintbox-cluster.lspxwhg.mongodb.net/complaintbox?retryWrites=true&w=majority"
+CORS(app, resources={r"/*": {"origins": "*"}})
 
-mongo = PyMongo(app)
+@app.route("/", methods=["GET"])
+def home():
+    return "Flask server is running!"
 
-@app.route("/")
-def hello_world():
-    # Insert a document into the 'inventory' collection
-    mongo.db.inventory.insert_one({"a": 1})  # Use quotes for the key
-    return "Hello world!"
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"error": "No data received"}), 400
+
+    username = data.get("username")
+    password = data.get("password")
+
+    if not username or not password:
+        return jsonify({"error": "Missing username or password"}), 400
+
+    return jsonify({
+        "user": username,
+        "message": "Login successful"
+    }), 200
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=3001,
+        debug=True
+    )
