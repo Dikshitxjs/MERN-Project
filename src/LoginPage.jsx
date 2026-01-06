@@ -13,19 +13,26 @@ export default function LoginPage() {
   e.preventDefault();
   setError("");
 
+  if (!username || !password) {
+    setError("Username and password required");
+    return;
+  }
+
   try {
     const response = await axios.post(
       "http://localhost:3001/login",
-      { username, password },
-      { headers: { "Content-Type": "application/json" } }
+      { username, password }
     );
 
     console.log(response.data.user);
   } catch (err) {
-    setError("Cannot connect to server");
+    if (err.response) {
+      setError(err.response.data.error || "Login failed");
+    } else {
+      setError("Server not reachable");
+    }
   }
 };
-
 
 
   return (
