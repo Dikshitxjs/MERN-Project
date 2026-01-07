@@ -9,7 +9,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e) => {
+ const handleLogin = async (e) => {
   e.preventDefault();
   setError("");
 
@@ -19,17 +19,21 @@ export default function LoginPage() {
   }
 
   try {
-    const response = await axios.post(
-      "http://localhost:3001/login",
-      { username, password }
-    );
+    const res = await axios.post("http://localhost:3001/login", {
+      username,
+      password,
+    });
 
-    console.log(response.data.user);
-  } catch (err) {
-    if (err.response) {
-      setError(err.response.data.error || "Login failed");
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("user", res.data.user);
+
+    navigate("/dashboard");  // change to whatever route you want
+  } 
+  catch (err) {
+    if (err.response?.data?.error) {
+      setError(err.response.data.error);
     } else {
-      setError("Server not reachable");
+      setError("Server error — try again");
     }
   }
 };
